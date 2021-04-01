@@ -38,6 +38,14 @@ ruleTester.run('assign-timer-id', rule, {
           messageId: 'assignTimerId'
         }
       ]
+    },
+    {
+      code: 'setInterval(() => {}, 1000)',
+      errors: [
+        {
+          messageId: 'assignTimerId'
+        }
+      ]
     }
   ]
 });

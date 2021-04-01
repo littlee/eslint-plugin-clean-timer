@@ -5,8 +5,15 @@
   "keywords": [
     "eslint",
     "eslintplugin",
-    "eslint-plugin"
+    "eslint-plugin",
+    "setTimeout",
+    "setInterval"
   ],
+  "homepage": "https://github.com/littlee/eslint-plugin-clean-timer#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/littlee/eslint-plugin-clean-timer.git"
+  },
   "author": "littlee",
   "main": "lib/index.js",
   "scripts": {
