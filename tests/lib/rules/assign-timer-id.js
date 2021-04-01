@@ -15,10 +15,19 @@ var rule = require('../../../lib/rules/assign-timer-id'),
 // Tests
 //------------------------------------------------------------------------------
 
-var ruleTester = new RuleTester();
+var ruleTester = new RuleTester({
+  parserOptions: {
+    ecmaVersion: 6
+  }
+});
 ruleTester.run('assign-timer-id', rule, {
   valid: [
-    // give me some code that won't trigger a warning
+    {
+      code: 'var a = setTimeout(() => {}, 1000)'
+    },
+    {
+      code: 'setTimeout(() => {})'
+    }
   ],
 
   invalid: [
@@ -26,8 +35,7 @@ ruleTester.run('assign-timer-id', rule, {
       code: 'setTimeout(() => {}, 1000)',
       errors: [
         {
-          message: 'Fill me in.',
-          type: 'Me too'
+          messageId: 'assignTimerId'
         }
       ]
     }
