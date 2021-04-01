@@ -1,50 +1,51 @@
+[中文文档](https://github.com/littlee/eslint-plugin-clean-timer/blob/master/README.zh-cn.md)
+
 # eslint-plugin-clean-timer
 
-best practice with setTimeout and setInterval
+Enforce best practice with `setTimeout` and `setInterval`
+
+## Motivation
+
+It is always easy to forget to clear the timers set up by `setTimeout` or `setInterval`, which can cause bugs that are uneasy to find out.
+
+Image a component with onMount and onUnmount life cycle, in the code below, if the component is mounted and unmounted within 1000ms, the timer will still fire.
+
+```js
+class App {
+  onMout() {
+    setTimout(() => {}, 1000);
+  }
+}
+```
+
+The best practice is to clear the timer whenever we do need it any more
+
+```js
+class App {
+  onMout() {
+    this.timer = setTimout(() => {}, 1000);
+  }
+  onUnmount() {
+    clearTimeout(this.timer);
+  }
+}
+```
 
 ## Installation
 
-You'll first need to install [ESLint](http://eslint.org):
-
+```bash
+npm install eslint-plugin-clean-timer --save-dev
 ```
-$ npm i eslint --save-dev
-```
-
-Next, install `eslint-plugin-clean-timer`:
-
-```
-$ npm install eslint-plugin-clean-timer --save-dev
-```
-
 
 ## Usage
 
-Add `clean-timer` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
+Add `clean-timer` to your eslint configuration file
 
 ```json
 {
-    "plugins": [
-        "clean-timer"
-    ]
+  "plugins": ["clean-timer"],
+  "rules": {
+    "clean-timer/assign-timer-id": 2
+  }
 }
 ```
-
-
-Then configure the rules you want to use under the rules section.
-
-```json
-{
-    "rules": {
-        "clean-timer/rule-name": 2
-    }
-}
-```
-
-## Supported Rules
-
-* Fill in provided rules here
-
-
-
-
-
