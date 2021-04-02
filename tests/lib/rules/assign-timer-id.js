@@ -29,10 +29,25 @@ ruleTester.run('assign-timer-id', rule, {
       code: 'setTimeout(() => {})'
     }
   ],
-
   invalid: [
     {
       code: 'setTimeout(() => {}, 1000)',
+      errors: [
+        {
+          messageId: 'assignTimerId'
+        }
+      ]
+    },
+    {
+      code: 'setInterval(() => {})',
+      errors: [
+        {
+          messageId: 'assignTimerId'
+        }
+      ]
+    },
+    {
+      code: 'setInterval(() => {}, 0)',
       errors: [
         {
           messageId: 'assignTimerId'
