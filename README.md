@@ -13,20 +13,25 @@ Image a component with onMount and onUnmount life cycle, in the code below, if t
 ```js
 class App {
   onMout() {
-    setTimout(() => {}, 1000);
+    /* timer id should assign to an identifier or member for cleaning up,
+      `let timer = setInterval()` */
+    setInterval(() => {}, 1000);
+    /* ^^^^^^^^^^^^^^^^^^^^^^^^ */
   }
 }
 ```
 
-The best practice is to clear the timer whenever we do need it any more
+The best practice is to clear the timer whenever we do need it any more.
+
+This ESLint plugin can warn you when you are setting up any timers need to be cleared.
 
 ```js
 class App {
   onMout() {
-    this.timer = setTimout(() => {}, 1000);
+    this.timer = setInterval(() => {}, 1000);
   }
   onUnmount() {
-    clearTimeout(this.timer);
+    clearInterval(this.timer);
   }
 }
 ```
@@ -48,4 +53,22 @@ Add `clean-timer` to your eslint configuration file
     "clean-timer/assign-timer-id": 2
   }
 }
+```
+
+## Examples
+
+timer need to be cleared
+
+```js
+setTimeout(() => {}, 1000);
+setInterval(() => {}, 1000);
+setInterval(() => {}, 0);
+setInterval(() => {});
+```
+
+timer **not** need to be cleared
+
+```js
+setTimeout(() => {}, 0);
+setTimeout(() => {});
 ```
