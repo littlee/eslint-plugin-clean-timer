@@ -10,7 +10,7 @@
 
 ```js
 class App {
-  onMout() {
+  onMount() {
     /* timer id should assign to an identifier or member for cleaning up,
       `let timer = setInterval()` */
     setInterval(() => {}, 1000);
@@ -25,7 +25,7 @@ class App {
 
 ```js
 class App {
-  onMout() {
+  onMount() {
     this.timer = setInterval(() => {}, 1000);
   }
   onUnmount() {
