@@ -6,9 +6,9 @@ Enforce best practice with `setTimeout` and `setInterval`
 
 ## Motivation
 
-It is always easy to forget to clear the timers set up by `setTimeout` or `setInterval`, which can cause bugs that are uneasy to find out.
+It is always **easy** to forget to clear the timers set up by `setTimeout` or `setInterval`, which can cause bugs that are **uneasy** to find out.
 
-Image a component with onMount and onUnmount life cycle, in the code below, if the component is mounted and unmounted within 1000ms, the timer will still fire.
+Image a component with onMount and onUnmount life cycles, in the code below, if the component is mounted and unmounted within 1000ms, the timer will still fire
 
 ```js
 class App {
@@ -21,7 +21,7 @@ class App {
 }
 ```
 
-The best practice is to clear the timer whenever we do need it any more.
+The best practice is to clear the timer whenever we don't need it any more.
 
 This ESLint plugin can warn you when you are setting up any timers need to be cleared.
 
