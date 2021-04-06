@@ -10,21 +10,26 @@
 
 ```js
 class App {
-  onMout() {
-    setTimout(() => {}, 1000);
+  onMount() {
+    /* timer id should assign to an identifier or member for cleaning up,
+      `let timer = setInterval()` */
+    setInterval(() => {}, 1000);
+    /* ^^^^^^^^^^^^^^^^^^^^^^^^ */
   }
 }
 ```
 
-最佳实践是再不需要定时器的时候及时清理
+最佳实践是在不需要定时器的时候及时清理
+
+这个 ESLint 插件可以在你设置需要被清除的定时器的时候发出警告
 
 ```js
 class App {
-  onMout() {
-    this.timer = setTimout(() => {}, 1000);
+  onMount() {
+    this.timer = setInterval(() => {}, 1000);
   }
   onUnmount() {
-    clearTimeout(this.timer);
+    clearInterval(this.timer);
   }
 }
 ```
@@ -46,4 +51,22 @@ npm install eslint-plugin-clean-timer --save-dev
     "clean-timer/assign-timer-id": 2
   }
 }
+```
+
+## 实例
+
+需要被清除的定时器
+
+```js
+setTimeout(() => {}, 1000);
+setInterval(() => {}, 1000);
+setInterval(() => {}, 0);
+setInterval(() => {});
+```
+
+**不**需要被清除的定时器
+
+```js
+setTimeout(() => {}, 0);
+setTimeout(() => {});
 ```
