@@ -70,3 +70,7 @@ setInterval(() => {});
 setTimeout(() => {}, 0);
 setTimeout(() => {});
 ```
+
+## 开源证书
+
+MIT 许可

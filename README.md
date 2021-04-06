@@ -72,3 +72,7 @@ timer **not** need to be cleared
 setTimeout(() => {}, 0);
 setTimeout(() => {});
 ```
+
+## License
+
+MIT License
