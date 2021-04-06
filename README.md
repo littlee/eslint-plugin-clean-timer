@@ -12,7 +12,7 @@ Image a component with onMount and onUnmount life cycles, in the code below, if 
 
 ```js
 class App {
-  onMout() {
+  onMount() {
     /* timer id should assign to an identifier or member for cleaning up,
       `let timer = setInterval()` */
     setInterval(() => {}, 1000);
@@ -27,7 +27,7 @@ This ESLint plugin can warn you when you are setting up any timers need to be cl
 
 ```js
 class App {
-  onMout() {
+  onMount() {
     this.timer = setInterval(() => {}, 1000);
   }
   onUnmount() {
