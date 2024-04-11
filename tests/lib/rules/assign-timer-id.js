@@ -34,6 +34,9 @@ ruleTester.run("assign-timer-id", rule, {
     {
       code: "const a = window.setInterval(() => {}, 1000)",
     },
+    {
+      code: "someOtherObject.setInterval(() => {}, 1000)",
+    },
   ],
   invalid: [
     {
