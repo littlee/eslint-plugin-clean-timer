@@ -23,11 +23,23 @@ var ruleTester = new RuleTester({
 ruleTester.run('assign-timer-id', rule, {
   valid: [
     {
+      code: 'var a = setInterval(() => {}, 1000)'
+    },
+    {
       code: 'var a = setTimeout(() => {}, 1000)'
     },
     {
       code: 'setTimeout(() => {})'
-    }
+    },
+    {
+      code: 'let a = window.setTimeout(() => {}, 1000)'
+    },
+    {
+      code: 'window.setTimeout(() => {}, 0)'
+    },
+    {
+      code: 'window.setTimeout'
+    },
   ],
   invalid: [
     {
@@ -61,6 +73,22 @@ ruleTester.run('assign-timer-id', rule, {
           messageId: 'assignTimerId'
         }
       ]
-    }
+    },
+    {
+      code: 'window.setInterval(() => {}, 1000)',
+      errors: [
+        {
+          messageId: 'assignTimerId'
+        }
+      ]
+    },
+    {
+      code: 'globalThis.setInterval(() => {}, 1000)',
+      errors: [
+        {
+          messageId: 'assignTimerId'
+        }
+      ]
+    },
   ]
 });
